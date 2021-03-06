@@ -1,0 +1,150 @@
+
+snippet imr "Import React from 'react'" b
+
+import * as React from 'react'
+
+endsnippet
+
+
+snippet fce "function component export (with prop interface)" b
+import * as React from 'react'
+
+type $1Props = {
+	$3
+}
+
+export default function ${1:``rv = require('path').basename(path).split('.')[0]``}(${2:props}: $1Props) {
+	return ${4:null}$0
+}
+endsnippet
+
+snippet sfce "simple function component export (no prop interface)" b
+import * as React from 'react'
+
+export default function ${1:``rv = require('path').basename(path).split('.')[0]``}() {
+	return ${2:null}
+}
+endsnippet
+
+snippet provider "context/provider skeleton" b
+
+import React, { createContext, ReactNode } from 'react';
+
+export interface I${1:``rv = require('path').basename(path).split('.')[0]``}{
+}
+
+type $1Props = {
+  children: ReactNode;
+};
+
+export const $2Context = createContext<I$1>(null!);
+
+const $1 = ({ children }: $1Props) => {
+  return (
+    <$2Context.Provider
+      value={{
+		$3
+      }}
+    >
+      {children}
+    </$2Context.Provider>
+  );
+};
+
+export default $1;
+
+endsnippet
+
+snippet uef "useEffect()" b
+useEffect(() => {
+	$0
+}, [$1])
+endsnippet
+
+snippet uefa "useEffect() async" b
+useEffect(() => {
+	let cancelled = false;
+
+	(async function ${4:doWork}(): Promise<${5:void}> {
+		${1:// async work here}
+		if (cancelled) {
+			return
+		}
+
+		$2
+	})()
+
+	return () => {
+		cancelled = true
+	}
+}, [$3])
+endsnippet
+
+snippet uec "useContext()" b
+${5:const ${1:context} =} useContext$3($2)$0
+endsnippet
+
+snippet uem "useMemo(fn, inputs)" b
+const ${1:memoized} = useMemo(() => ${2:{
+	$3
+}}, [$4])
+endsnippet
+
+snippet impn "import { nested } from" b
+import { $1 } from '$2'
+endsnippet
+
+snippet cl "console.log" w
+console.log($1)
+endsnippet
+
+snippet clv "console.log variable" w
+console.log('$1:', $1)
+endsnippet
+
+
+snippet rtf "React Test File" b
+import React from 'react'
+import { render } from '@testing-library/react'
+
+import { ${1:``rv = require('path').basename(path).split('.')[0]``} } from '../$1'
+
+describe('$1', () => {
+	it('should $2', () => {
+		$3
+	})
+})
+endsnippet
+
+snippet rhtf "React Hooks Test File" b
+import { renderHook } from '@testing-library/react-hooks'
+
+import $2 from '../${1:``rv = require('path').basename(path).split('.')[0]``}'
+
+describe('$1', () => {
+	it('should $3', () => {
+		$4
+	})
+})
+endsnippet
+
+snippet desc "describe a test" b
+describe('$1', () => {
+	it('should $2', () => {
+		$3
+	})
+})
+endsnippet
+
+snippet it "create a test block" b
+it('should $1', () => {
+	$2
+})
+endsnippet
+
+snippet ait "create an async test block" b
+it('should $1', async () => {
+	$2
+})
+endsnippet
+

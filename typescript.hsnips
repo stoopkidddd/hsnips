@@ -1,0 +1,12 @@
+
+snippet impn "import { nested } from" b
+import { $1 } from '$2'
+endsnippet
+
+snippet cl "console.log" w
+console.log($1)
+endsnippet
+
+snippet clv "console.log variable" w
+console.log('$1:', $1)
+endsnippet
